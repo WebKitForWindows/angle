@@ -141,7 +141,7 @@ WEBKIT_INCLUDE_CONFIG_FILES_IF_EXISTS()
 add_subdirectory(include)
 
 add_library(ANGLEFramework INTERFACE)
-add_dependencies(ANGLEFramework ANGLEHeaders)
+add_dependencies(ANGLEFramework GLSLANGHeaders ANGLEHeaders)
 
 if (USE_ANGLE_EGL)
     add_library(ANGLE STATIC

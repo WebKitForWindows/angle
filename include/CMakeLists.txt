@@ -38,8 +38,7 @@ set(glslang_headers
 
 set(khr_headers KHR/khrplatform.h)
 
-# All ports require GLSLANG headers
-set(ANGLE_PUBLIC_HEADERS ${glslang_headers})
+set(ANGLE_PUBLIC_HEADERS ${khr_headers})
 
 if (USE_ANGLE_EGL)
     list(APPEND ANGLE_PUBLIC_HEADERS
@@ -47,11 +46,15 @@ if (USE_ANGLE_EGL)
         ${gles_headers}
         ${gles2_headers}
         ${gles3_headers}
-        ${khr_headers}
     )
-elseif (NOT USE_EGL)
-    list(APPEND ANGLE_PUBLIC_HEADERS ${khr_headers})
 endif ()
+
+# Cocoa expects headers in an ANGLE directory
+WEBKIT_COPY_FILES(GLSLANGHeaders
+    DESTINATION ${ANGLE_FRAMEWORK_HEADERS_DIR}/ANGLE
+    FILES ${glslang_headers}
+    FLATTEN
+)
 
 WEBKIT_COPY_FILES(ANGLEHeaders
     DESTINATION ${ANGLE_FRAMEWORK_HEADERS_DIR}
