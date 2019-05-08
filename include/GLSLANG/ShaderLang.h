@@ -8,7 +8,8 @@
 
 #include <stddef.h>
 
-#include "KHR/khrplatform.h"
+// Ensure local ANGLE's khrplatform.h is used
+#include "../KHR/khrplatform.h"
 
 #include <array>
 #include <map>
