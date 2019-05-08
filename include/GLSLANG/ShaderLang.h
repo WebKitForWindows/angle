@@ -8,7 +8,11 @@
 
 #include <stddef.h>
 
-#include "KHR/khrplatform.h"
+#if defined(__APPLE__)
+#include "khrplatform.h"
+#else
+#include "../KHR/khrplatform.h"
+#endif
 
 #include <array>
 #include <map>
