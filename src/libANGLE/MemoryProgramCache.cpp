@@ -134,7 +134,7 @@ angle::Result MemoryProgramCache::getProgram(const Context *context,
     if (get(context, *hashOut, &binaryProgram))
     {
         angle::Result result = program->loadBinary(context, GL_PROGRAM_BINARY_ANGLE,
-                                                   binaryProgram.data(), binaryProgram.size());
+                                                   binaryProgram.data(), static_cast<int>(binaryProgram.size()));
         ANGLE_HISTOGRAM_BOOLEAN("GPU.ANGLE.ProgramCache.LoadBinarySuccess",
                                 result == angle::Result::Continue);
         ANGLE_TRY(result);

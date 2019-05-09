@@ -364,7 +364,7 @@ std::unique_ptr<LinkEvent> ProgramGL::link(const gl::Context *context,
                             // set either.
                             ASSERT(outputVar.index == -1);
                             mFunctions->bindFragDataLocationIndexed(
-                                mProgramID, outputLocationIndex, 0, outputVar.mappedName.c_str());
+                                mProgramID, static_cast<int>(outputLocationIndex), 0, outputVar.mappedName.c_str());
                         }
                     }
                 }
@@ -386,7 +386,7 @@ std::unique_ptr<LinkEvent> ProgramGL::link(const gl::Context *context,
                             // the index set either.
                             ASSERT(outputVar.index == -1);
                             mFunctions->bindFragDataLocationIndexed(
-                                mProgramID, outputLocationIndex, 1, outputVar.mappedName.c_str());
+                                mProgramID, static_cast<int>(outputLocationIndex), 1, outputVar.mappedName.c_str());
                         }
                     }
                 }
