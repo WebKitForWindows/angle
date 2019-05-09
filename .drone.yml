@@ -1,0 +1,63 @@
+---
+kind: pipeline
+name: x64
+
+platform:
+  os: windows
+  arch: amd64
+  version: 1809
+
+steps:
+- name: configure
+  image: webkitdev/msbuild:1809
+  pull: always
+  commands:
+  - cmake -B build -S . -A x64 -DPORT=Win ..
+
+- name: build-debug
+  image: webkitdev/msbuild:1809
+  pull: never
+  commands:
+  - cmake --build build --config Debug
+
+- name: build-release
+  image: webkitdev/msbuild:1809
+  pull: never
+  commands:
+  - cmake --build build --config Release
+
+when:
+  branch:
+    - webkit*
+
+---
+kind: pipeline
+name: x86
+
+platform:
+  os: windows
+  arch: amd64
+  version: 1809
+
+steps:
+- name: configure
+  image: webkitdev/msbuild:1809
+  pull: always
+  commands:
+  - cmake -B build -S . -A Win32 -DPORT=Win ..
+
+- name: build-debug
+  image: webkitdev/msbuild:1809
+  pull: never
+  commands:
+  - cmake --build build --config Debug
+
+- name: build-release
+  image: webkitdev/msbuild:1809
+  pull: never
+  commands:
+  - cmake --build build --config Release
+
+when:
+  branch:
+    - webkit*
