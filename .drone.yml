@@ -13,10 +13,44 @@ steps:
   commands:
   - cmake -B build -S . -A x64 -DPORT=Win ..
 
-- name: build
+- name: build-debug
   image: webkitdev/msbuild:1809
   commands:
-  - cmake --build build
+  - cmake --build --config Debug build
+
+- name: build-release
+  image: webkitdev/msbuild:1809
+  commands:
+  - cmake --build --config Release build
+
+when:
+  branch:
+    - webkit*
+
+---
+kind: pipeline
+name: x86
+
+platform:
+  os: windows
+  arch: amd64
+  version: 1809
+
+steps:
+- name: configure
+  image: webkitdev/msbuild:1809
+  commands:
+  - cmake -B build -S . -A x86 -DPORT=Win ..
+
+- name: build-debug
+  image: webkitdev/msbuild:1809
+  commands:
+  - cmake --build --config Debug build
+
+- name: build-release
+  image: webkitdev/msbuild:1809
+  commands:
+  - cmake --build --config Release build
 
 when:
   branch:
