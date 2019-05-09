@@ -11,15 +11,12 @@ steps:
 - name: configure
   image: webkitdev/msbuild:1809
   commands:
-  - mkdir build
-  - cd build
-  - cmake -A x64 -DPORT=Win ..
+  - cmake -B build -S . -A x64 -DPORT=Win ..
 
 - name: build
   image: webkitdev/msbuild:1809
   commands:
-  - cd build
-  - cmake --build
+  - cmake --build build
 
 when:
   branch:
