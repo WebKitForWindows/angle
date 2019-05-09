@@ -10,18 +10,21 @@ platform:
 steps:
 - name: configure
   image: webkitdev/msbuild:1809
+  pull: always
   commands:
   - cmake -B build -S . -A x64 -DPORT=Win ..
 
 - name: build-debug
   image: webkitdev/msbuild:1809
+  pull: never
   commands:
-  - cmake --build --config Debug build
+  - cmake --config Debug --build build
 
 - name: build-release
   image: webkitdev/msbuild:1809
+  pull: never
   commands:
-  - cmake --build --config Release build
+  - cmake --config Release --build build
 
 when:
   branch:
@@ -39,18 +42,21 @@ platform:
 steps:
 - name: configure
   image: webkitdev/msbuild:1809
+  pull: always
   commands:
   - cmake -B build -S . -A x86 -DPORT=Win ..
 
 - name: build-debug
   image: webkitdev/msbuild:1809
+  pull: never
   commands:
-  - cmake --build --config Debug build
+  - cmake --config Debug --build build
 
 - name: build-release
   image: webkitdev/msbuild:1809
+  pull: never
   commands:
-  - cmake --build --config Release build
+  - cmake --config Release --build build
 
 when:
   branch:
