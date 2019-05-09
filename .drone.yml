@@ -44,19 +44,19 @@ steps:
   image: webkitdev/msbuild:1809
   pull: always
   commands:
-  - cmake -B build -S . -A x86 -DPORT=Win ..
+  - cmake -B build -S . -A Win32 -DPORT=Win ..
 
 - name: build-debug
   image: webkitdev/msbuild:1809
   pull: never
   commands:
-  - cmake --config Debug --build build
+  - cmake --build build --config Debug
 
 - name: build-release
   image: webkitdev/msbuild:1809
   pull: never
   commands:
-  - cmake --config Release --build build
+  - cmake --build build --config Release
 
 when:
   branch:
