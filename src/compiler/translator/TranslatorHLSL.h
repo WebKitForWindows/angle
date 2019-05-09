@@ -16,7 +16,9 @@ class TranslatorHLSL : public TCompiler
 {
   public:
     TranslatorHLSL(sh::GLenum type, ShShaderSpec spec, ShShaderOutput output);
+#ifdef ANGLE_ENABLE_HLSL
     TranslatorHLSL *getAsTranslatorHLSL() override { return this; }
+#endif
 
     bool hasShaderStorageBlock(const std::string &interfaceBlockName) const;
     unsigned int getShaderStorageBlockRegister(const std::string &interfaceBlockName) const;
