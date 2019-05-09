@@ -1,0 +1,26 @@
+---
+kind: pipeline
+name: x64
+
+platform:
+  os: windows
+  arch: amd64
+  version: 1809
+
+steps:
+- name: configure
+  image: webkitdev/msbuild:1809
+  commands:
+  - mkdir build
+  - cd build
+  - cmake -A x64 -DPORT=Win ..
+
+- name: build
+  image: webkitdev/msbuild:1809
+  commands:
+  - cd build
+  - cmake --build
+
+when:
+  branch:
+    - webkit*
